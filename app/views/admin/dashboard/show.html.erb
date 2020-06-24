@@ -11,24 +11,15 @@
   </thead>
 
   <tbody>
-    <tr>
-      <td>Apparel</td>
-      <td><a href="categories/1"><%= @apparel_count %></a></td>
-    </tr>
-    <tr>
-      <td>Electronics</td>
-      <td><a href="categories/2"><%= @electronic_count %></a></td>
-    </tr>
-    <tr>
-      <td>Furniture</td>
-      <td><a href="categories/3"><%= @furniture_count %></a></td>
-    </tr>
+    <% @product_per_category_count.each do |category, count| %>
+      <%= render "category_count", category: category, count: count %>
+    <% end %>
   </tbody>
 
   <tfoot>
     <tr>
       <th>Total number of products</th>
-      <td><a href="/admin/products"><%= @product_count %></a></td>
+      <td><a href="/admin/products"><%= @product.length %></a></td>
     </tr>
   </tfoot>
 </table>

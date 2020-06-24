@@ -3,9 +3,18 @@ class Admin::DashboardController < ApplicationController
   http_basic_authenticate_with name: ENV["USERNAME"], password: ENV["PASSWORD"]
 
   def show
-    @product_count = Product.all.count
-    @apparel_count = Product.where(category_id: 1).count
-    @electronic_count = Product.where(category_id: 2).count
-    @furniture_count = Product.where(category_id: 3).count
+    @category_name_to_id = {}
+    @product_per_category_count = {}
+    @product = Product.all
+    @product_category = Category.joins(:products)
+
+    @product_category.map do |n|
+      unless @product_per_category_count[n.name] == nil
+        @product_per_category_count[n.name] += 1
+      else
+        @product_per_category_count[n.name] = 1
+        @category_name_to_id[n.name] = n.id
+      end
+    end
   end
 end
