@@ -6,16 +6,9 @@
   <thead>
     <tr>
       <th>Categories</th>
-      <th>Number of Products in Category</th>
+      <td><a href="/admin/categories"><%= @category.length %></a></td>
     </tr>
   </thead>
-
-  <tbody>
-    <% @product_per_category_count.each do |category, count| %>
-      <%= render "category_count", category: category, count: count %>
-    <% end %>
-  </tbody>
-
   <tfoot>
     <tr>
       <th>Total number of products</th>
