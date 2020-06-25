@@ -1,1 +1,18 @@
-<h1>Hello!</h1>
+<h1>Categories</h1>
+<br>
+
+<table class="table table-bordered">
+
+  <thead>
+    <tr>
+      <th>Categories</th>
+      <th>Number of Products in Category</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @product_per_category_count.each do |category, count| %>
+      <%= render "category_count", category: category, count: count %>
+    <% end %>
+  </tbody>
+</table>
