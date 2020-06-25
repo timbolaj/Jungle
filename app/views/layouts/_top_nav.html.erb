@@ -28,10 +28,10 @@
         <li>
           <%= link_to "About Us", :about %>
         </li>
-
+        
         <% if current_user %>
-          <li>Signed in as <%= current_user.name %></li> 
-          <li><%= link_to "Logout", '/logout' %></li>
+          <li><%= link_to 'Logout', '/logout' %></li>
+        </ul>
         <% else %>
           <li><%= link_to 'Login', '/login' %></li>
           <li><%= link_to 'Signup', '/signup' %></li>
