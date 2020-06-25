@@ -5,7 +5,13 @@
 <div class="row">
   <div class="col-sm-4">
 
-    <%= form_for url: '/login' do |form| %>
+    <% flash.each do |type, msg| %>
+      <div class="alert alert-info">
+        <%= msg %>
+      </div>
+    <% end %>
+
+    <%= form_for :sessions, url: { :action => "create" } do |form| %>
 
       <div class="form-group">
         <%= form.label :Email %>
@@ -18,8 +24,7 @@
       </div>
 
       <%= form.submit 'Submit', class: 'btn btn-primary' %>
+    <% end %>
 
-    <% end %>  
   </div>
-
 </div>
