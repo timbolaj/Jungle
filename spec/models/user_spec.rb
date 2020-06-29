@@ -93,5 +93,50 @@ RSpec.describe User, type: :model do
       end
     end
   end
-end
 
+  describe '.authenticate_with_credentials' do
+    it "is valid if email is in db and password matches email" do
+      @user = User.create(first_name: 'test', last_name: 'test', password: 'test1', password_confirmation: 'test1', email: 'testing')
+      @authenticate = User.authenticate_with_credentials('testing', 'test1')
+
+      expect(@authenticate).to eql(@user)
+    end
+
+    it "is valid if email is correct, in different case, with whitespace and password matches" do
+      @user = User.create(first_name: 'test', last_name: 'test', password: 'test1', password_confirmation: 'test1', email: 'testing')
+      @authenticate = User.authenticate_with_credentials(' TeStInG   ', 'test1')
+
+      expect(@authenticate).to eql(@user)
+
+    end
+
+    it "is invalid if user does not input an email" do
+      @user = User.create(first_name: 'test', last_name: 'test', password: 'test1', password_confirmation: 'test1', email: 'testing')
+      @authenticate = User.authenticate_with_credentials(nil, 'test1')
+
+      expect(@authenticate).to eql(nil)
+    end
+
+    it "is invalid if user does not input a password" do
+      @user = User.create(first_name: 'test', last_name: 'test', password: 'test1', password_confirmation: 'test1', email: 'testing')
+      @authenticate = User.authenticate_with_credentials('test', nil)
+
+      expect(@authenticate).to eql(nil)
+    end
+
+    it "is invalid if user inputs nothing" do
+      @user = User.create(first_name: 'test', last_name: 'test', password: 'test1', password_confirmation: 'test1', email: 'testing')
+      @authenticate = User.authenticate_with_credentials(nil, nil)
+
+      expect(@authenticate).to eql(nil)
+    end
+
+    it "is invalid if user inputs right email, but the wrong password (case-sensitive)" do
+      @user = User.create(first_name: 'test', last_name: 'test', password: 'test1', password_confirmation: 'test1', email: 'testing')
+      @authenticate = User.authenticate_with_credentials('testing', 'Test1')
+
+      expect(@authenticate).to eql(nil)
+    end
+
+  end
+end

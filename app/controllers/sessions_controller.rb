@@ -3,8 +3,6 @@ class SessionsController < ApplicationController
   end
 
   def create
-    # user = User.new
-    # if user.authenticate_with_credentials(params[:email], params[:password])
     p params[:password]
     if user = User.authenticate_with_credentials(params[:sessions][:email], params[:sessions][:password])
       session[:user_id] = user.id 
