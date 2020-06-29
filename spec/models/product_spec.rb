@@ -32,12 +32,12 @@ RSpec.describe Product, :type => :model do
       @product.price = 10000
       @product.quantity = 10000
       @product.category_id = @category
-      @product.save
-
       @category.products = [@product]
+
+      @product.save
       
-      expect(@product.errors.full_messages.length == 1)
-      expect(@product.errors.full_messages[0] == "Name can't be blank")
+      expect(@product.errors.full_messages.length).to eql(1)
+      expect(@product.errors.full_messages[0]).to eql("Name can't be blank")
       expect(@product).to_not be_valid
     end
 
@@ -51,12 +51,13 @@ RSpec.describe Product, :type => :model do
       @product.quantity = 1
       @product.price = nil
       @product.category_id = @category
+      @category.products = [@product]      
       @product.save
 
-      @category.products = [@product]
-
-      expect(@product.errors.full_messages.length == 1)
-      expect(@product.errors.full_messages[0] == "Price can't be blank")
+      expect(@product.errors.full_messages.length).to eql(3)
+      expect(@product.errors.full_messages[0]).to eql("Price cents is not a number")
+      expect(@product.errors.full_messages[1]).to eql("Price is not a number")
+      expect(@product.errors.full_messages[2]).to eql("Price can't be blank")
       expect(@product).to_not be_valid
 
     end
@@ -71,11 +72,10 @@ RSpec.describe Product, :type => :model do
       @product.price = 1
       @product.quantity = nil
       @product.category_id = @category
+      @category.products = [@product]
       @product.save
 
-      @category.products = [@product]
-
-      expect(@product.errors.full_messages.length == 1)
+      expect(@product.errors.full_messages.length).to eql(1)
       expect(@product.errors.full_messages[0]).to eql("Quantity can't be blank")
       expect(@product).to_not be_valid
 
@@ -95,7 +95,7 @@ RSpec.describe Product, :type => :model do
 
       @category = [@product]
 
-      expect(@product.errors.full_messages.length == 1)
+      expect(@product.errors.full_messages.length).to eql(1)
       expect(@product.errors.full_messages[0]).to eql("Category can't be blank")
       expect(@product).to_not be_valid
 
