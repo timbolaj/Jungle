@@ -1,0 +1,14 @@
+<section class="orders-show">
+
+  <header class="page-header">
+    <h1>Order</h1>
+  </header>
+
+  <div class="order-summary jumbotron">
+
+      <h4>Your total is: <%= humanized_money_with_symbol (@order.total_cents / 100)%></h4>
+      <h4>The e-mail used for this invoice is <%= @order.email %></h4>
+      <h4>Thank you for your order!</h4>
+    
+  </div>
+</section>
