@@ -140,7 +140,7 @@ RSpec.describe User, type: :model do
 
     it "is valid if user registers with spaces in email (case-insensitive) with and logs in with right email and right password" do
       @user = User.create(first_name: 'test', last_name: 'test', password: 'test1', password_confirmation: 'test1', email: '  Testing ')
-      @authenticate = User.authenticate_with_credentials('testing', 'test1')
+      @authenticate = User.authenticate_with_credentials('  testing', 'test1')
 
       expect(@authenticate).to eql(@user)
     end

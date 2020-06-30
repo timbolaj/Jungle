@@ -17,7 +17,6 @@ class Product < ActiveRecord::Base
       if self.price <= 0
         self.price = false 
       end
-      puts self.price
       self.price
     end
 
