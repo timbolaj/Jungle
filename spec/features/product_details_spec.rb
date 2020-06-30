@@ -15,7 +15,7 @@ RSpec.feature "ProductDetails", type: :feature, js: true do
     )
   end
 
-  scenario "They see all products" do
+  scenario "Clicking on a product will lead to the show template" do
     # ACT
     visit root_path
     # puts page.html
@@ -24,6 +24,5 @@ RSpec.feature "ProductDetails", type: :feature, js: true do
     # DEBUG / VERIFY
 
     expect(page).to have_css '.products-show'
-    save_screenshot    
   end
 end

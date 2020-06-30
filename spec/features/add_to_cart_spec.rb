@@ -15,5 +15,16 @@ RSpec.feature "User can add to cart", type: :feature, js: true do
     end
   end
 
-  
+  scenario "Clicking on add to cart will see the cart button change in count" do
+    # ACT
+    visit root_path
+    expect(page).to have_text 'My Cart (0)'
+
+    page.find('.product', match: :first).find('.actions').click_on 'Add'
+
+    expect(page).to have_text 'My Cart (1)'
+
+    # DEBUG / VERIFY
+  end
+
 end
