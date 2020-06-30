@@ -1,8 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature "ProductDetails", type: :feature, js: true do
-  # Click on a product partial
-  # Test if I make it to that partial page
+
   before :each do
     @category = Category.create! name: 'Apparel'
 
