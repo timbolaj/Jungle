@@ -18,6 +18,8 @@ RSpec.describe Product, :type => :model do
       @product.category_id = @category
 
       @category.products = [@product]
+
+      @product.save
       
       expect(@product).to be_valid
     end
@@ -48,16 +50,15 @@ RSpec.describe Product, :type => :model do
 
       @product = Product.new
       @product.name = 'test'
-      @product.quantity = 1
       @product.price = nil
+      @product.quantity = 10000
       @product.category_id = @category
-      @category.products = [@product]      
+      @category.products = [@product]
+
       @product.save
 
-      expect(@product.errors.full_messages.length).to eql(3)
-      expect(@product.errors.full_messages[0]).to eql("Price cents is not a number")
-      expect(@product.errors.full_messages[1]).to eql("Price is not a number")
-      expect(@product.errors.full_messages[2]).to eql("Price can't be blank")
+      expect(@product.errors.full_messages.length).to eql(1)
+      expect(@product.errors.full_messages[0]).to eql("Price is not a number")
       expect(@product).to_not be_valid
 
     end

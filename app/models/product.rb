@@ -5,9 +5,20 @@ class Product < ActiveRecord::Base
 
   belongs_to :category
 
+  before_validation :ensure_has_price
+
   validates :name, presence: true
   validates :price, presence: true
   validates :quantity, presence: true
   validates :category, presence: true
+
+  private
+    def ensure_has_price
+      if self.price <= 0
+        self.price = false 
+      end
+      puts self.price
+      self.price
+    end
 
 end
