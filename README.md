@@ -2,6 +2,9 @@
 
 A mini e-commerce application built with Rails 4.2 for purposes of teaching Rails by example.
 
+!["Home Page"](https://github.com/timbolaj/Jungle/blob/master/docs/home-page.png?raw=true)
+!["Cart"](https://github.com/timbolaj/Jungle/blob/master/docs/cart.png?raw=true)
+
 ## Setup
 
 1. Run `bundle install` to install dependencies
