@@ -3,9 +3,6 @@ class OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @line_items = @order.line_items
-    #@line_items is an array
-    # need to loop over it and assign the relevent fields
-    # @img, @name, @description, @quantity, @line_total
   end
 
   def create
@@ -13,7 +10,7 @@ class OrdersController < ApplicationController
     order  = create_order(charge)
 
     if order.valid?
-      OrderMailer.send(order)      
+      # OrderMailer.send(order)      
       empty_cart!
       redirect_to order, notice: 'Your Order has been placed.'
     else
@@ -58,6 +55,7 @@ class OrdersController < ApplicationController
         total_price: product.price * quantity
       )
     end
+
     order.save!
     order
   end
@@ -66,8 +64,7 @@ class OrdersController < ApplicationController
     #@line_items is an array
     # need to loop over it and assign the relevant fields
     # @img, @name, @description, @quantity, @line_total
-    order.map {|item| { name: item.name, quantity: item.quantity, description: item.descriptio }}
+    order.map {|item| { name: item.name, quantity: item.quantity, description: item.description }}
     # Product.where(id: cart.keys).map {|product| { product:product, quantity: cart[product.id.to_s] }
   end
-
 end
