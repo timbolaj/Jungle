@@ -2,7 +2,10 @@
 
 A mini e-commerce application built with Rails 4.2 for purposes of teaching Rails by example.
 
+Home Page
 !["Home Page"](https://github.com/timbolaj/Jungle/blob/master/docs/home-page.png?raw=true)
+
+Cart
 !["Cart"](https://github.com/timbolaj/Jungle/blob/master/docs/cart.png?raw=true)
 
 ## Setup
